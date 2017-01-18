@@ -22,9 +22,7 @@ class MongoDbSmokeTest extends Specification {
         def command = database.runCommand(new BasicDBObject('buildInfo', 1))
 
         then:
-        println command.getString('version')
         assertThat(command.getString('version')).isNotEmpty()
-        assertThat(false).isTrue();
     }
 
 }
