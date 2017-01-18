@@ -1,0 +1,25 @@
+description = 'hub content feed'
+
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'groovy'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    testCompile 'org.mongodb:mongodb-driver:3.4.1'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+    testCompile 'org.codehaus.groovy:groovy-all:2.4.7'
+    testCompile 'org.assertj:assertj-core:3.6.1'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.1'
+}
+
