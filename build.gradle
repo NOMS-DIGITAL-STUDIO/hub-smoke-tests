@@ -17,6 +17,7 @@ dependencies {
     testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
     testCompile 'org.codehaus.groovy:groovy-all:2.4.7'
     testCompile 'org.assertj:assertj-core:3.6.1'
+    testCompile 'com.microsoft.azure:azure-storage:4.0.0'
 }
 
 task wrapper(type: Wrapper) {

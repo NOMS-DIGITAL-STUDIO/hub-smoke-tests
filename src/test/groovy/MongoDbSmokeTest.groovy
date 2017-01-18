@@ -5,6 +5,7 @@ import com.mongodb.client.MongoDatabase
 import spock.lang.Specification
 
 import static org.assertj.core.api.Assertions.assertThat
+import static org.assertj.core.api.Assertions.fail
 
 class MongoDbSmokeTest extends Specification {
 
@@ -12,7 +13,7 @@ class MongoDbSmokeTest extends Specification {
         setup:
         String mongoConnectionUri = System.getenv 'MONGODB_CONNECTION_URI'
         if (!mongoConnectionUri) {
-            mongoConnectionUri = 'mongodb://localhost:27017'
+            fail 'MONGODB_CONNECTION_URI environment variable was not set'
         }
 
         MongoClient mongoClient = new MongoClient(new MongoClientURI(mongoConnectionUri))
