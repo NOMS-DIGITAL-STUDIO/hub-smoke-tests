@@ -14,15 +14,15 @@ class AzureBlobStoreSmokeTest extends Specification {
     private static final String IMAGE_FILE_NAME = 'hub-smoke-tests-1-pixel.png'
 
     def 'Azure blob store health'() {
-        setup:
-        String azureConnectionUri = System.getenv('AZURE_BLOB_STORE_CONNECTION_URI')
+        given:
+        String azureConnectionUri = System.getenv 'AZURE_BLOB_STORE_CONNECTION_URI'
         if (!azureConnectionUri) {
             fail 'AZURE_BLOB_STORE_CONNECTION_URI environment variable was not set'
         }
 
-        String azurePublicUrlBase = System.getenv('AZURE_BLOB_STORE_PUBLIC_URL_BASE');
+        String azurePublicUrlBase = System.getenv 'AZURE_BLOB_STORE_PUBLIC_URL_BASE'
         if (!azurePublicUrlBase) {
-            fail('AZURE_BLOB_STORE_PUBLIC_URL_BASE environment variable was not set')
+            fail 'AZURE_BLOB_STORE_PUBLIC_URL_BASE environment variable was not set'
         }
 
         CloudBlobClient blobClient = CloudStorageAccount.parse(azureConnectionUri).createCloudBlobClient()
@@ -36,7 +36,7 @@ class AzureBlobStoreSmokeTest extends Specification {
         HttpResponse<String> imageResponse = Unirest.get(uri).asString()
 
         then:
-        assertThat(imageResponse.getStatus()).isEqualTo(200);
+        assertThat(imageResponse.getStatus()).isEqualTo(200)
     }
 
 }

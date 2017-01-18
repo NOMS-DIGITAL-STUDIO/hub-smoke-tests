@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.fail
 class MongoDbSmokeTest extends Specification {
 
     def 'MongoDb health'() {
-        setup:
+        given:
         String mongoConnectionUri = System.getenv 'MONGODB_CONNECTION_URI'
         if (!mongoConnectionUri) {
             fail 'MONGODB_CONNECTION_URI environment variable was not set'
