@@ -4,7 +4,6 @@ import com.mongodb.MongoClientURI
 import com.mongodb.client.MongoDatabase
 import spock.lang.Specification
 
-import static org.assertj.core.api.Assertions.assertThat
 import static org.assertj.core.api.Assertions.fail
 
 class MongoDbSmokeTest extends Specification {
@@ -23,7 +22,7 @@ class MongoDbSmokeTest extends Specification {
         def command = database.runCommand(new BasicDBObject('buildInfo', 1))
 
         then:
-        assertThat(command.getString('version')).isNotEmpty()
+        command.getString('version').length() != 0
     }
 
 }

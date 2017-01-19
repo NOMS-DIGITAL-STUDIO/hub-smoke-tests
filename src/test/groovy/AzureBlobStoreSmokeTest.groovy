@@ -6,7 +6,6 @@ import com.microsoft.azure.storage.blob.CloudBlobContainer
 import spock.lang.Specification
 
 import static java.lang.String.format
-import static org.assertj.core.api.Assertions.assertThat
 import static org.assertj.core.api.Assertions.fail
 
 class AzureBlobStoreSmokeTest extends Specification {
@@ -36,7 +35,7 @@ class AzureBlobStoreSmokeTest extends Specification {
         HttpResponse<String> imageResponse = Unirest.get(uri).asString()
 
         then:
-        assertThat(imageResponse.getStatus()).isEqualTo(200)
+        imageResponse.getStatus() == 200
     }
 
 }
