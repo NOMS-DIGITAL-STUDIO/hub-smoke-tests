@@ -12,8 +12,8 @@ class AzureBlobStoreSmokeTest extends Specification {
     private static final String AZURE_CONTAINER_NAME = "content-items"
     private static final String IMAGE_FILE_NAME = 'hub-smoke-tests-1-pixel.png'
 
-    def 'Azure blob store health'() {
-        given:
+    def 'Azure blob store is healthy'() {
+        given: 'I connect to the Azure blob store'
         String azureConnectionUri = System.getenv 'AZURE_BLOB_STORE_CONNECTION_URI'
         if (!azureConnectionUri) {
             fail 'AZURE_BLOB_STORE_CONNECTION_URI environment variable was not set'
@@ -27,14 +27,14 @@ class AzureBlobStoreSmokeTest extends Specification {
         CloudBlobClient blobClient = CloudStorageAccount.parse(azureConnectionUri).createCloudBlobClient()
         CloudBlobContainer container = blobClient.getContainerReference(AZURE_CONTAINER_NAME)
 
-        when:
+        when: 'I upload a file and then access its public URL'
         File file = new File(getClass().getResource(IMAGE_FILE_NAME).toURI())
         container.getBlockBlobReference(IMAGE_FILE_NAME).upload(new FileInputStream(file), file.size())
 
         String uri = format("%s/%s/%s", azurePublicUrlBase, AZURE_CONTAINER_NAME, IMAGE_FILE_NAME)
         HttpResponse<String> imageResponse = Unirest.get(uri).asString()
 
-        then:
+        then: 'I get a HTTP status OK response'
         imageResponse.getStatus() == 200
     }
 
