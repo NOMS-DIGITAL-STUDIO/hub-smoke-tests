@@ -3,3 +3,4 @@ test:
     - ./gradlew clean build
   post:
     - cp -r build $CIRCLE_ARTIFACTS
+    - cp -r build/reports/tests/test $CIRCLE_TEST_REPORTS/junit/report
