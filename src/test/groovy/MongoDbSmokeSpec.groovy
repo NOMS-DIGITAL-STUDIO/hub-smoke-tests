@@ -3,16 +3,11 @@ import com.mongodb.MongoClient
 import com.mongodb.MongoClientURI
 import spock.lang.Specification
 
-import static org.assertj.core.api.Assertions.fail
-
-class MongoDbSmokeTest extends Specification {
+class MongoDbSmokeSpec extends Specification {
 
     def 'MongoDb is healthy'() {
         given: 'I connect to the MongoDB Media Store'
-        def mongoConnectionUri = System.getenv 'MONGODB_CONNECTION_URI'
-        if (!mongoConnectionUri) {
-            fail 'MONGODB_CONNECTION_URI environment variable was not set'
-        }
+        def mongoConnectionUri = System.getenv('MONGODB_CONNECTION_URI') ?: 'mongodb://localhost:27017'
 
         def mongoClient = new MongoClient(new MongoClientURI(mongoConnectionUri))
         def database = mongoClient.getDatabase 'hub_metadata'
