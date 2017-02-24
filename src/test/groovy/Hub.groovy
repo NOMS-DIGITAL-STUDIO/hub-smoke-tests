@@ -19,7 +19,6 @@ class Hub {
 
         contentFeedUri = (System.getenv('HUB_CONTENT_FEED_URI') ?: "http://localhost:8080/hub-content-feed/")
         log.info("contentFeedUri: ${contentFeedUri}")
-        println "contentFeedUri: ${contentFeedUri}"
 
         adminUiUri = (System.getenv('HUB_ADMIN_UI_URI') ?: "http://localhost:3000/")
         log.info("adminUiUri: ${adminUiUri}")

@@ -11,7 +11,7 @@ class HubContentFeedUiSpec extends Specification {
     Hub theHub = new Hub()
 
     @Ignore
-    def 'Content Feed UI application is healthy'() {
+    def 'Content Feed UI application is available'() {
         when: 'I access the Content Feed UI'
         HttpResponse<String> response = Unirest.get(theHub.contentFeedUiUri).asString()
 
