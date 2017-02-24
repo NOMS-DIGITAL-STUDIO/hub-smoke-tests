@@ -12,7 +12,7 @@ class Hub {
         username = System.getenv('BASIC_AUTH_USERNAME') ?: 'user'
         password = System.getenv('BASIC_AUTH_PASSWORD') ?: 'password'
 
-        adminUri = (System.getenv('HUB_ADMIN_URI') ?: "http://localhost:8080/")
+        adminUri = (System.getenv('HUB_ADMIN_URI') ?: "http://localhost:8080/hub-admin/")
         log.info("adminUri: ${adminUri}")
         adminUri = adminUri.replaceFirst('^https?://', "http://${username}:${password}@")
 
