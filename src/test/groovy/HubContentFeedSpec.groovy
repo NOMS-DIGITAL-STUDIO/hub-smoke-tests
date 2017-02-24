@@ -5,15 +5,15 @@ import org.apache.http.HttpStatus
 import spock.lang.Shared
 import spock.lang.Specification
 
-class HubAdminSpec extends Specification {
+class HubContentFeedSpec extends Specification {
 
     @Shared
     Hub theHub = new Hub()
 
-    def 'Admin REST service is healthy'() {
+    def 'Content Feed REST service is healthy'() {
 
         when:
-        HttpResponse<JsonNode> response = Unirest.get(theHub.adminUri + "health").asJson()
+        HttpResponse<JsonNode> response = Unirest.get(theHub.contentFeedUri + "health").asJson()
 
         then:
         response.getStatus() == (HttpStatus.SC_OK)

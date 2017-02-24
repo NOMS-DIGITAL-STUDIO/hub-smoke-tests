@@ -3,6 +3,7 @@ import groovy.util.logging.Slf4j
 @Slf4j
 class Hub {
     String adminUri
+    String contentFeedUri
     String adminUiUri
     String contentFeedUiUri
     String username
@@ -15,6 +16,10 @@ class Hub {
         adminUri = (System.getenv('HUB_ADMIN_URI') ?: "http://localhost:8080/hub-admin/")
         log.info("adminUri: ${adminUri}")
         adminUri = adminUri.replaceFirst('^https?://', "http://${username}:${password}@")
+
+        contentFeedUri = (System.getenv('HUB_CONTENT_FEED_URI') ?: "http://localhost:8080/hub-content-feed/")
+        log.info("contentFeedUri: ${contentFeedUri}")
+        contentFeedUri = contentFeedUri.replaceFirst('^https?://', "http://${username}:${password}@")
 
         adminUiUri = (System.getenv('HUB_ADMIN_UI_URI') ?: "http://localhost:3000/")
         log.info("adminUiUri: ${adminUiUri}")
